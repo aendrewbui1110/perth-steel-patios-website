@@ -2,7 +2,11 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Phone, Mail, Clock, MapPin, CheckCircle2 } from 'lucide-react';
 
-export function Contact() {
+interface ContactProps {
+  showHeading?: boolean;
+}
+
+export function Contact({ showHeading = true }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '', phone: '', email: '', suburb: '', type: '', message: '',
   });
