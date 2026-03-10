@@ -2,6 +2,8 @@ import { Outlet } from 'react-router';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { MobileCTA } from '../components/MobileCTA';
+import { FloatingQuote } from '../components/FloatingQuote';
+import { ExitIntent } from '../components/ExitIntent';
 import { ScrollToTop } from '../components/ScrollToTop';
 
 export function MainLayout() {
@@ -14,6 +16,8 @@ export function MainLayout() {
       </main>
       <Footer />
       <MobileCTA />
+      <FloatingQuote />
+      <ExitIntent />
     </div>
   );
 }
