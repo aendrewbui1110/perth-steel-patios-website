@@ -10,7 +10,6 @@ import { Process } from '../components/Process';
 import { Gallery } from '../components/Gallery';
 import { Testimonials } from '../components/Testimonials';
 import { CtaBanner } from '../components/CtaBanner';
-import { Contact } from '../components/Contact';
 import heroImage from '../assets/hero-1920.jpg';
 
 export default function HomePage() {
@@ -51,7 +50,6 @@ export default function HomePage() {
       <Gallery />
       <Testimonials />
       <CtaBanner />
-      <Contact />
     </>
   );
 }

@@ -314,9 +314,12 @@ export default function SuburbPage() {
               <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">
                 Nearby Areas
               </h2>
-              <h3 className="text-3xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-10">
+              <h3 className="text-3xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4">
                 We Also Service Nearby
               </h3>
+              <p className="text-[#858580] text-sm mb-10">
+                We service all of Perth metro — from Yanchep to Mandurah.
+              </p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

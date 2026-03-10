@@ -1,21 +1,37 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useLocation } from 'react-router';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { Logo } from './Logo';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { services } from '../data/services';
 
-const navLinks = [
-  { name: 'Services',     to: '/services',      hash: '#services'     },
-  { name: 'Why Us',       to: '/about',          hash: '#why-us'       },
-  { name: 'Process',      to: '/process',        hash: '#process'      },
-  { name: 'Gallery',      to: '/gallery',        hash: '#gallery'      },
-  { name: 'Testimonials', to: '/#testimonials',  hash: '#testimonials' },
+interface DropdownItem {
+  label: string;
+  to: string;
+}
+
+const serviceDropdownItems: DropdownItem[] = [
+  { label: 'All Services', to: '/services' },
+  ...services.map((s) => ({ label: s.title, to: `/services/${s.slug}` })),
 ];
 
+const aboutDropdownItems: DropdownItem[] = [
+  { label: 'Our Story', to: '/about' },
+  { label: 'Our Process', to: '/process' },
+  { label: 'Service Areas', to: '/about#service-areas' },
+];
+
+type DropdownKey = 'services' | 'about';
+type MobileAccordion = 'services' | 'about' | null;
+
 export function Navbar() {
-  const [isScrolled, setIsScrolled]           = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
+  const [expandedMobile, setExpandedMobile] = useState<MobileAccordion>(null);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const menuToggleRef = useRef<HTMLButtonElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60);
@@ -36,22 +52,48 @@ export function Navbar() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isMobileMenuOpen]);
 
-  /** On homepage, scroll to section. On other pages, navigate to the page route. */
-  const getNavHref = useCallback(
-    (link: typeof navLinks[0]) => {
-      if (pathname === '/') {
-        // On homepage: Testimonials stays as hash-scroll, others use hash too
-        return link.hash;
-      }
-      // On other pages: navigate to the dedicated page (or hash route for testimonials)
-      return link.to;
-    },
-    [pathname],
-  );
+  // Close dropdown on route change
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [pathname]);
 
-  const isActive = (link: typeof navLinks[0]) => {
-    if (link.to.startsWith('/#')) return false;
-    return pathname === link.to;
+  const handleMouseEnter = (key: DropdownKey) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setOpenDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+      closeTimeoutRef.current = null;
+    }, 150);
+  };
+
+  const handleSectionClick = (hash: string) => {
+    setOpenDropdown(null);
+    if (pathname === '/') {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/' + hash);
+    }
+  };
+
+  const isActivePath = (to: string) => {
+    if (to.includes('#')) return false;
+    return pathname === to;
+  };
+
+  const toggleMobileAccordion = (key: MobileAccordion) => {
+    setExpandedMobile((prev) => (prev === key ? null : key));
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setExpandedMobile(null);
   };
 
   return (
@@ -82,38 +124,108 @@ export function Navbar() {
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => {
-                const href = getNavHref(link);
-                const active = isActive(link);
 
-                // If on homepage, use anchor tags for hash scroll
-                if (pathname === '/') {
-                  return (
-                    <a
-                      key={link.name}
-                      href={href}
-                      className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
-                        active ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
+              {/* Services dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter('services')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => handleSectionClick('#services')}
+                  className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#9A9A94] hover:text-[#EAE6DF] transition-colors duration-200"
+                >
+                  Services
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${openDropdown === 'services' ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <div
+                  className={`absolute top-full left-0 mt-2 w-64 bg-[#151412] border border-[#22211E] rounded-xl shadow-2xl shadow-black/50 p-2 transition-all duration-150 ${
+                    openDropdown === 'services'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 -translate-y-2 pointer-events-none'
+                  }`}
+                >
+                  {serviceDropdownItems.map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setOpenDropdown(null)}
+                      className={`block px-4 py-2.5 rounded-lg text-sm transition-colors ${
+                        isActivePath(item.to)
+                          ? 'text-[#C8713A] bg-[#1C1A18]'
+                          : 'text-[#9A9A94] hover:text-[#EAE6DF] hover:bg-[#1C1A18]'
                       }`}
                     >
-                      {link.name}
-                    </a>
-                  );
-                }
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
-                // On other pages, use Link for navigation
-                return (
-                  <Link
-                    key={link.name}
-                    to={href}
-                    className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
-                      active ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
+              {/* About dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter('about')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => handleSectionClick('#why-us')}
+                  className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#9A9A94] hover:text-[#EAE6DF] transition-colors duration-200"
+                >
+                  About
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${openDropdown === 'about' ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <div
+                  className={`absolute top-full left-0 mt-2 w-52 bg-[#151412] border border-[#22211E] rounded-xl shadow-2xl shadow-black/50 p-2 transition-all duration-150 ${
+                    openDropdown === 'about'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 -translate-y-2 pointer-events-none'
+                  }`}
+                >
+                  {aboutDropdownItems.map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setOpenDropdown(null)}
+                      className={`block px-4 py-2.5 rounded-lg text-sm transition-colors ${
+                        isActivePath(item.to)
+                          ? 'text-[#C8713A] bg-[#1C1A18]'
+                          : 'text-[#9A9A94] hover:text-[#EAE6DF] hover:bg-[#1C1A18]'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Gallery - direct link */}
+              <Link
+                to="/gallery"
+                className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                  pathname === '/gallery' ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
+                }`}
+              >
+                Gallery
+              </Link>
+
+              {/* Blog - direct link */}
+              <Link
+                to="/blog"
+                className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                  pathname === '/blog' ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
+                }`}
+              >
+                Blog
+              </Link>
             </div>
 
             {/* Desktop CTA */}
@@ -149,7 +261,7 @@ export function Navbar() {
               </span>
             </div>
             <button
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
               className="text-[#9A9A94] hover:text-white p-2"
               aria-label="Close menu"
             >
@@ -157,39 +269,103 @@ export function Navbar() {
             </button>
           </div>
 
-          <nav className="flex flex-col gap-1 flex-1">
-            {navLinks.map((link) => {
-              const href = getNavHref(link);
-
-              if (pathname === '/') {
-                return (
-                  <a
-                    key={link.name}
-                    href={href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase"
-                  >
-                    {link.name}
-                  </a>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.name}
-                  to={href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase ${
-                    isActive(link) ? 'text-[#C8713A]' : 'text-[#EAE6DF]'
+          <nav className="flex flex-col gap-1 flex-1 overflow-y-auto">
+            {/* Services accordion */}
+            <div>
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('services')}
+                className="w-full flex items-center justify-between font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase"
+              >
+                Services
+                <ChevronDown
+                  size={22}
+                  className={`text-[#5E5E58] transition-transform duration-200 ${
+                    expandedMobile === 'services' ? 'rotate-180' : ''
                   }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+                />
+              </button>
+              {expandedMobile === 'services' && (
+                <div className="flex flex-col gap-1 py-2">
+                  {serviceDropdownItems.map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={closeMobileMenu}
+                      className={`pl-6 py-2.5 text-xl font-heading tracking-wide uppercase transition-colors ${
+                        isActivePath(item.to)
+                          ? 'text-[#C8713A]'
+                          : 'text-[#858580] hover:text-[#EAE6DF]'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* About accordion */}
+            <div>
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('about')}
+                className="w-full flex items-center justify-between font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase"
+              >
+                About
+                <ChevronDown
+                  size={22}
+                  className={`text-[#5E5E58] transition-transform duration-200 ${
+                    expandedMobile === 'about' ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              {expandedMobile === 'about' && (
+                <div className="flex flex-col gap-1 py-2">
+                  {aboutDropdownItems.map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={closeMobileMenu}
+                      className={`pl-6 py-2.5 text-xl font-heading tracking-wide uppercase transition-colors ${
+                        isActivePath(item.to)
+                          ? 'text-[#C8713A]'
+                          : 'text-[#858580] hover:text-[#EAE6DF]'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Gallery - direct link */}
+            <Link
+              to="/gallery"
+              onClick={closeMobileMenu}
+              className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase ${
+                pathname === '/gallery' ? 'text-[#C8713A]' : 'text-[#EAE6DF]'
+              }`}
+            >
+              Gallery
+            </Link>
+
+            {/* Blog - direct link */}
+            <Link
+              to="/blog"
+              onClick={closeMobileMenu}
+              className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase ${
+                pathname === '/blog' ? 'text-[#C8713A]' : 'text-[#EAE6DF]'
+              }`}
+            >
+              Blog
+            </Link>
           </nav>
 
-          <div className="flex flex-col gap-3 mt-10">
+          <div className="border-t border-[#1E1D1A] my-4" />
+
+          <div className="flex flex-col gap-3 mt-4">
             <a
               href="tel:1300000000"
               className="flex items-center justify-center gap-2 border border-[#2A2922] text-[#EAE6DF] py-4 rounded font-semibold text-sm uppercase tracking-widest"
@@ -199,7 +375,7 @@ export function Navbar() {
             </a>
             <Link
               to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
               className="flex items-center justify-center bg-[#C8713A] hover:bg-[#B5632E] text-white py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors"
             >
               Get a Free Quote

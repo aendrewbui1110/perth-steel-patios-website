@@ -101,6 +101,9 @@ export function Footer() {
             </div>
 
             <h4 className="text-[10px] font-bold text-[#3E3D38] uppercase tracking-[0.22em] mb-3">Service Areas</h4>
+            <p className="text-sm text-[#858580] mb-3 italic">
+              Servicing all of Perth metro — from Yanchep to Mandurah and everywhere in between
+            </p>
             <div className="flex flex-wrap gap-2">
               {suburbs.map(s => (
                 <span key={s} className="text-xs px-2 py-1 rounded bg-[#131311] text-[#3E3D38]">
@@ -108,6 +111,9 @@ export function Footer() {
                 </span>
               ))}
             </div>
+            <p className="text-xs text-[#5E5E58] mt-2">
+              Plus many more suburbs across the Perth metropolitan area
+            </p>
           </div>
         </div>
 

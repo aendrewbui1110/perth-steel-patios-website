@@ -4,7 +4,7 @@ import { services } from '../data/services';
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-[#131311] border-t border-[#22211E]">
+    <section id="services" className="py-24 scroll-mt-20 bg-[#131311] border-t border-[#22211E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}

@@ -219,12 +219,12 @@ export default function AboutPage() {
             <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">
               Where We Work
             </h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4">
-              Service Areas
+            <h3 id="service-areas" className="text-3xl md:text-4xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4">
+              We Service All of Perth Metro
             </h3>
             <p className="text-[#858580] mb-10 max-w-2xl leading-relaxed">
-              We service all of the Perth metropolitan area — from Yanchep in the north to Mandurah
-              in the south, and everywhere in between.
+              From Yanchep in the north to Mandurah in the south — if you're in the Perth
+              metropolitan area, we've got you covered. Here are some of the suburbs we frequently work in:
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -238,6 +238,10 @@ export default function AboutPage() {
                 </Link>
               ))}
             </div>
+            <p className="text-[#858580] text-sm mt-6">
+              Don't see your suburb? We likely service your area too.{' '}
+              <Link to="/contact" className="text-[#C8713A] hover:underline">Get in touch</Link> to confirm.
+            </p>
           </motion.div>
         </div>
       </section>

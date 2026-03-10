@@ -162,7 +162,11 @@ export default function ContactPage() {
               <h3 className="text-3xl md:text-4xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4">
                 We Service All of Perth Metro
               </h3>
-              <div className="w-16 h-0.5 bg-[#C8713A] mx-auto" />
+              <p className="text-[#858580] mt-4 max-w-2xl mx-auto leading-relaxed">
+                From Yanchep in the north to Mandurah in the south — if you're in the Perth
+                metropolitan area, we've got you covered.
+              </p>
+              <div className="w-16 h-0.5 bg-[#C8713A] mx-auto mt-4" />
             </div>
 
             <div className="flex flex-wrap justify-center gap-2.5">
@@ -176,6 +180,9 @@ export default function ContactPage() {
                 </Link>
               ))}
             </div>
+            <p className="text-center text-[#858580] text-sm mt-6">
+              Don't see your suburb? We likely service your area too.
+            </p>
           </motion.div>
         </div>
       </section>
