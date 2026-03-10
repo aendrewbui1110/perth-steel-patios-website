@@ -1,40 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-
-const services = [
-  {
-    title: 'Flat Roof Patios',
-    description: 'Clean, modern lines that complement contemporary Perth homes. Ideal for tight spaces and maximising usable outdoor area with minimal visual bulk.',
-  },
-  {
-    title: 'Gable Roof Patios',
-    description: "Perth's most popular style. The peaked roof allows superior airflow and sheds rain effortlessly — a classic for good reason.",
-  },
-  {
-    title: 'Dutch Gable Patios',
-    description: 'The best of both worlds — the aesthetic of a gable with the airflow benefits of a skillion. Great for larger alfresco areas.',
-  },
-  {
-    title: 'Skillion Patios',
-    description: 'A single-pitch roof with bold architectural appeal. Low-maintenance and perfect for homes where roof height needs managing.',
-  },
-  {
-    title: 'Carports',
-    description: 'Protect your vehicles from the harsh WA sun and storms. Single, double, and triple bay configurations in any Colorbond colour.',
-  },
-  {
-    title: 'Dome & Curved Roof',
-    description: 'A statement structure that sets your property apart. Our curved steel frames create a striking organic form — engineered to last.',
-  },
-  {
-    title: 'Freestanding Pergolas',
-    description: "Don't have a wall to attach to? Our freestanding steel pergolas are engineered to stand alone — anywhere in your yard.",
-  },
-  {
-    title: 'Custom & Commercial',
-    description: 'Large-format or non-standard builds are our speciality. We handle council approvals, structural engineering, and the full build.',
-  },
-];
+import { services } from '../data/services';
 
 export function Services() {
   return (
@@ -69,7 +35,7 @@ export function Services() {
             >
               {/* Number */}
               <span className="font-heading text-3xl font-bold text-[#D4622A]/25 group-hover:text-[#D4622A]/40 transition-colors leading-none select-none">
-                {String(index + 1).padStart(2, '0')}
+                {service.number}
               </span>
               {/* Title */}
               <h4 className="font-heading text-base font-bold text-[#EAE6DF] uppercase tracking-wide leading-snug">

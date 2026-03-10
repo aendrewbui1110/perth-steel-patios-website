@@ -1,50 +1,6 @@
 import { motion } from 'motion/react';
 import { Star, Quote } from 'lucide-react';
-
-const reviews = [
-  {
-    name: 'Mark T.',
-    location: 'Wembley',
-    date: 'March 2025',
-    text: 'The team at Perth Steel Patios delivered exactly what they promised. The new freestanding patio is rock solid and looks fantastic. Professional from the first quote to the final cleanup.',
-    rating: 5,
-  },
-  {
-    name: 'Sarah J.',
-    location: 'Canning Vale',
-    date: 'February 2025',
-    text: "We needed a custom carport to fit an awkward space. They engineered a brilliant solution using quality steel. The structure feels incredibly sturdy and the finish is flawless.",
-    rating: 5,
-  },
-  {
-    name: 'David L.',
-    location: 'Hillarys',
-    date: 'January 2025',
-    text: 'Highly recommend. They handled all the council approvals for our attached patio, which took a huge weight off our shoulders. The build quality is exceptional.',
-    rating: 5,
-  },
-  {
-    name: 'Trish & Brian K.',
-    location: 'Ellenbrook',
-    date: 'December 2024',
-    text: "From quote to handover in under three weeks. Kept us updated throughout. The finished gable patio has completely transformed our backyard — we're out there every evening.",
-    rating: 5,
-  },
-  {
-    name: 'Mike R.',
-    location: 'Fremantle',
-    date: 'November 2024',
-    text: "Got three quotes and Perth Steel Patios were mid-range on price but miles ahead on quality and communication. You can tell by looking at the steel work that it's built to last.",
-    rating: 5,
-  },
-  {
-    name: 'Jennifer T.',
-    location: 'Subiaco',
-    date: 'October 2024',
-    text: "Top-notch service from start to finish. They offered design suggestions we hadn't thought of, and the result is genuinely beautiful. Couldn't be happier.",
-    rating: 5,
-  },
-];
+import { testimonials, aggregateRating } from '../data/testimonials';
 
 function Stars({ count }: { count: number }) {
   return (
@@ -66,7 +22,7 @@ export function Testimonials() {
           <div className="max-w-xl">
             <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">Customer Reviews</h2>
             <h3 className="text-4xl md:text-5xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4 leading-tight">
-              143 Five-Star Reviews<br />and Counting
+              {aggregateRating.count} Five-Star Reviews<br />and Counting
             </h3>
             <div className="w-16 h-0.5 bg-[#D4622A]" />
           </div>
@@ -74,19 +30,19 @@ export function Testimonials() {
           {/* Aggregate rating badge */}
           <div className="flex items-center gap-4 bg-[#141418] border border-[#22222A] rounded-xl px-7 py-5 flex-shrink-0">
             <div>
-              <div className="font-heading text-5xl font-bold text-[#EAE6DF] leading-none mb-1">4.9</div>
+              <div className="font-heading text-5xl font-bold text-[#EAE6DF] leading-none mb-1">{aggregateRating.score}</div>
               <Stars count={5} />
             </div>
             <div className="pl-5 border-l border-[#22222A]">
-              <div className="text-[#858590] text-xs uppercase tracking-wider mb-0.5">Google Rating</div>
-              <div className="text-[#EAE6DF] font-semibold text-sm">143 reviews</div>
+              <div className="text-[#858590] text-xs uppercase tracking-wider mb-0.5">{aggregateRating.source}</div>
+              <div className="text-[#EAE6DF] font-semibold text-sm">{aggregateRating.count} reviews</div>
             </div>
           </div>
         </div>
 
         {/* Review cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {reviews.map((review, index) => (
+          {testimonials.map((review, index) => (
             <motion.div
               key={review.name}
               initial={{ opacity: 0, y: 20 }}
