@@ -27,19 +27,16 @@ export function FloatingQuote() {
       setSubmitted(true);
       sessionStorage.setItem('formSubmitted', 'true');
       setFormData({ name: '', phone: '', suburb: '' });
-      setTimeout(() => {
-        setSubmitted(false);
-        setIsOpen(false);
-      }, 3000);
+      // Let the user close it manually — no auto-close
     }, 1500);
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#4A4A54] text-sm focus:outline-none focus:border-[#D4622A] transition-colors duration-200';
+    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E68] text-sm focus:outline-none focus:border-[#D4622A] focus:ring-1 focus:ring-[#D4622A] transition-colors duration-200';
   const labelClass = 'block text-[10px] font-bold text-[#858590] uppercase tracking-[0.18em] mb-2';
 
   return (
-    <div className="fixed right-6 bottom-6 z-30 hidden lg:block">
+    <div className="fixed right-6 bottom-6 z-30 hidden md:block">
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -11,6 +11,7 @@ import {
   Plus,
   Minus,
   FileCheck,
+  ImageIcon,
   type LucideIcon,
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -199,13 +200,8 @@ export default function ProcessPage() {
                   transition={{ duration: 0.6, delay: 0.15 }}
                   className="flex-1 w-full"
                 >
-                  <div className="bg-[#1A1A20] border border-[#28282F] rounded-xl aspect-[4/3] flex items-center justify-center">
-                    <div className="text-center">
-                      <Icon size={48} className="text-[#28282F] mx-auto mb-3" />
-                      <p className="text-[#3A3A44] text-sm uppercase tracking-widest">
-                        Step {step.number} Photo
-                      </p>
-                    </div>
+                  <div className="bg-gradient-to-br from-[#1C1C22] to-[#141418] border border-[#28282F] rounded-xl aspect-[4/3] flex items-center justify-center">
+                    <ImageIcon className="w-8 h-8 text-[#28282F]" />
                   </div>
                 </motion.div>
               </div>

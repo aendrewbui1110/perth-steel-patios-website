@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Logo } from './Logo';
-import { Phone, Mail, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
 
 const quickLinks = [
   { label: 'Services',      to: '/services'  },
@@ -48,16 +48,6 @@ export function Footer() {
             <p className="text-[#5E5E68] text-sm leading-relaxed mb-6">
               Perth-made, Perth-proud. Building quality steel patios across the metro area for over 15 years.
             </p>
-
-            {/* Social */}
-            <div className="flex gap-3 mb-8">
-              <a href="#" aria-label="Facebook" className="w-9 h-9 rounded bg-[#1A1A20] border border-[#26262E] hover:border-[#D4622A]/40 flex items-center justify-center text-[#5E5E68] hover:text-[#D4622A] transition-colors">
-                <Facebook size={15} />
-              </a>
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded bg-[#1A1A20] border border-[#26262E] hover:border-[#D4622A]/40 flex items-center justify-center text-[#5E5E68] hover:text-[#D4622A] transition-colors">
-                <Instagram size={15} />
-              </a>
-            </div>
 
             {/* Credentials */}
             <div className="text-[#3E3E48] text-xs leading-relaxed space-y-1 border-t border-[#18181D] pt-5">
@@ -125,8 +115,8 @@ export function Footer() {
             &copy; {year} Perth Steel Patios. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-[#2E2E36]">
-            <a href="#" className="hover:text-[#5E5E68] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#5E5E68] transition-colors">Terms of Service</a>
+            <Link to="/privacy" className="hover:text-[#5E5E68] transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-[#5E5E68] transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

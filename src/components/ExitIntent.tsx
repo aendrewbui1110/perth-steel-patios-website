@@ -26,9 +26,10 @@ export function ExitIntent() {
     // User already submitted a form
     if (sessionStorage.getItem('formSubmitted')) return;
 
-    let ready = false;
-    const timer = setTimeout(() => {
+    let ready = sessionStorage.getItem('exitIntentReady') === 'true';
+    const timer = ready ? undefined : setTimeout(() => {
       ready = true;
+      sessionStorage.setItem('exitIntentReady', 'true');
     }, 5000);
 
     const handleMouseOut = (e: MouseEvent) => {
@@ -44,7 +45,7 @@ export function ExitIntent() {
     document.addEventListener('mouseout', handleMouseOut);
 
     return () => {
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       document.removeEventListener('mouseout', handleMouseOut);
     };
   }, [location.pathname]);
@@ -80,7 +81,7 @@ export function ExitIntent() {
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#4A4A54] text-sm focus:outline-none focus:border-[#D4622A] transition-colors duration-200';
+    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E68] text-sm focus:outline-none focus:border-[#D4622A] focus:ring-1 focus:ring-[#D4622A] transition-colors duration-200';
   const labelClass = 'block text-[10px] font-bold text-[#858590] uppercase tracking-[0.18em] mb-2';
 
   return (

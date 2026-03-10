@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, CheckCircle, Clock, Shield, Wrench, Building } from 'lucide-react';
+import { ArrowRight, ChevronRight, CheckCircle, Clock, Shield, Wrench, Building, ImageIcon } from 'lucide-react';
 import { services } from '../data/services';
 import SEOHead from '../components/SEOHead';
 
@@ -199,11 +199,9 @@ export default function ServiceDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
             >
-              {/* Placeholder Image */}
-              <div className="aspect-[4/3] bg-[#1C1C22] border border-[#22222A] rounded-xl flex items-center justify-center">
-                <span className="text-[#5E5E68] text-sm uppercase tracking-widest font-bold">
-                  {service.title}
-                </span>
+              {/* Image placeholder */}
+              <div className="aspect-[4/3] bg-gradient-to-br from-[#1C1C22] to-[#141418] border border-[#22222A] rounded-xl flex items-center justify-center">
+                <ImageIcon className="w-8 h-8 text-[#28282F]" />
               </div>
 
               {/* Quick Specs */}

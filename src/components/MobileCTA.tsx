@@ -1,7 +1,10 @@
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { Phone } from 'lucide-react';
 
 export function MobileCTA() {
+  const { pathname } = useLocation();
+  if (pathname === '/contact') return null;
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#0D0D11]/95 backdrop-blur-md border-t border-[#22222A] p-3 flex gap-3 shadow-2xl shadow-black/60">
       <a

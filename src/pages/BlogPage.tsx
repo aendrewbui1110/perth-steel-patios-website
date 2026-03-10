@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, ArrowRight, Clock } from 'lucide-react';
+import { ChevronRight, ArrowRight, Clock, ImageIcon } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blog-posts';
 import SEOHead from '../components/SEOHead';
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+
+  const visibleCategories = useMemo(() => {
+    return blogCategories.filter(
+      (cat) => cat.slug === 'all' || blogPosts.some((p) => p.category === cat.slug)
+    );
+  }, []);
 
   const filteredPosts =
     activeCategory === 'all'
@@ -51,7 +57,7 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Tabs */}
           <div className="flex flex-wrap gap-2 mb-12">
-            {blogCategories.map((cat) => (
+            {visibleCategories.map((cat) => (
               <button
                 key={cat.slug}
                 onClick={() => setActiveCategory(cat.slug)}
@@ -89,11 +95,9 @@ export default function BlogPage() {
                         to={`/blog/${post.slug}`}
                         className="group block bg-[#1C1C22] border border-[#22222A] rounded-xl overflow-hidden hover:border-[#D4622A]/50 hover:-translate-y-1 transition-all duration-300"
                       >
-                        {/* Placeholder image area */}
-                        <div className="aspect-[16/9] bg-[#141418] flex items-center justify-center">
-                          <span className="text-[#2E2E36] text-xs uppercase tracking-widest font-bold">
-                            Article Image
-                          </span>
+                        {/* Image placeholder */}
+                        <div className="aspect-[16/9] bg-gradient-to-br from-[#1C1C22] to-[#141418] flex items-center justify-center">
+                          <ImageIcon className="w-6 h-6 text-[#28282F]" />
                         </div>
 
                         <div className="p-6">

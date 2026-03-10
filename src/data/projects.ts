@@ -34,7 +34,7 @@ export const projects: Project[] = [
     id: 3,
     type: 'Flat Roof',
     title: 'Flat Roof Alfresco',
-    location: 'Scarborough',
+    location: 'Karrinyup',
     image: 'https://picsum.photos/seed/patio2/800/800',
     aspect: 'aspect-square',
     description:

@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router';
 import { motion } from 'motion/react';
-import { ChevronRight, ArrowRight, Clock, ArrowLeft } from 'lucide-react';
+import { ChevronRight, ArrowRight, Clock, ArrowLeft, ImageIcon } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blog-posts';
 import SEOHead from '../components/SEOHead';
 
@@ -96,10 +96,8 @@ export default function BlogPostPage() {
       {/* Placeholder Image */}
       <section className="bg-[#0D0D11]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="aspect-[21/9] bg-[#1C1C22] border border-[#22222A] rounded-xl flex items-center justify-center">
-            <span className="text-[#2E2E36] text-sm uppercase tracking-widest font-bold">
-              Featured Image
-            </span>
+          <div className="aspect-[21/9] bg-gradient-to-br from-[#1C1C22] to-[#141418] border border-[#22222A] rounded-xl flex items-center justify-center">
+            <ImageIcon className="w-8 h-8 text-[#28282F]" />
           </div>
         </div>
       </section>
@@ -154,10 +152,8 @@ export default function BlogPostPage() {
                     to={`/blog/${related.slug}`}
                     className="group block bg-[#1C1C22] border border-[#22222A] rounded-xl overflow-hidden hover:border-[#D4622A]/50 hover:-translate-y-1 transition-all duration-300"
                   >
-                    <div className="aspect-[16/9] bg-[#141418] flex items-center justify-center">
-                      <span className="text-[#2E2E36] text-xs uppercase tracking-widest font-bold">
-                        Article Image
-                      </span>
+                    <div className="aspect-[16/9] bg-gradient-to-br from-[#1C1C22] to-[#141418] flex items-center justify-center">
+                      <ImageIcon className="w-6 h-6 text-[#28282F]" />
                     </div>
                     <div className="p-5">
                       <span className="inline-block text-[10px] font-bold text-[#D4622A] uppercase tracking-[0.2em] bg-[#D4622A]/10 px-2.5 py-1 rounded mb-2">

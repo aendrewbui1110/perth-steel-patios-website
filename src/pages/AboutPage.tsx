@@ -12,6 +12,7 @@ import {
   Award,
   CheckCircle,
   Clock,
+  ImageIcon,
 } from 'lucide-react';
 import { suburbs } from '../data/suburbs';
 import SEOHead from '../components/SEOHead';
@@ -126,17 +127,15 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Placeholder Image */}
+            {/* Image placeholder */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="aspect-[4/3] bg-[#1C1C22] border border-[#22222A] rounded-xl flex items-center justify-center"
+              className="aspect-[4/3] bg-gradient-to-br from-[#1C1C22] to-[#141418] border border-[#22222A] rounded-xl flex items-center justify-center"
             >
-              <span className="text-[#5E5E68] text-sm uppercase tracking-widest font-bold">
-                Our Story
-              </span>
+              <ImageIcon className="w-8 h-8 text-[#28282F]" />
             </motion.div>
           </div>
         </div>

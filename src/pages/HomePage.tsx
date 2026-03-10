@@ -1,4 +1,5 @@
-// import { Hero } from '../components/Hero';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { HeroSlideshow } from '../components/HeroSlideshow';
 import { Stats } from '../components/Stats';
 import { Services } from '../components/Services';
@@ -11,6 +12,16 @@ import { CtaBanner } from '../components/CtaBanner';
 import { Contact } from '../components/Contact';
 
 export default function HomePage() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [hash]);
+
   return (
     <>
       <HeroSlideshow />

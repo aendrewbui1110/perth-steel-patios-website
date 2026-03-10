@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Calendar,
   Award,
-  MapPin,
 } from 'lucide-react';
 import { Contact } from '../components/Contact';
 import { suburbs } from '../data/suburbs';
@@ -199,19 +198,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Placeholder */}
-      <section className="py-16 bg-[#111115]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#1A1A20] border border-[#28282F] rounded-xl aspect-[21/9] flex items-center justify-center">
-            <div className="text-center">
-              <MapPin size={48} className="text-[#28282F] mx-auto mb-3" />
-              <p className="text-[#3A3A44] text-sm uppercase tracking-widest">
-                Service Area Map
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
