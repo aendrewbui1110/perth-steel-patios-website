@@ -33,7 +33,7 @@ export function Footer() {
 
           {/* Brand col */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-5">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 mb-5">
               <Logo className="h-10 w-auto" />
               <div className="flex flex-col leading-none">
                 <span className="font-heading font-bold text-base tracking-widest text-[#EAE6DF] uppercase">

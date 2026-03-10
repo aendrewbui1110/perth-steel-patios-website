@@ -53,7 +53,7 @@ export function Navbar() {
           <div className="flex justify-between items-center">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group" aria-label="Perth Steel Patios home">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 group" aria-label="Perth Steel Patios home">
               <Logo className="h-10 w-auto" />
               <div className="flex flex-col leading-none">
                 <span className="font-heading font-bold text-lg tracking-widest text-[#EAE6DF] uppercase">
