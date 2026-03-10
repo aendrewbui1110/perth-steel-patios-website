@@ -1,13 +1,14 @@
+import { Link } from 'react-router';
 import { Logo } from './Logo';
 import { Phone, Mail, Facebook, Instagram } from 'lucide-react';
 
 const quickLinks = [
-  { label: 'Services',      href: '#services'     },
-  { label: 'Why Choose Us', href: '#why-us'       },
-  { label: 'Our Process',   href: '#process'      },
-  { label: 'Gallery',       href: '#gallery'      },
-  { label: 'Testimonials',  href: '#testimonials' },
-  { label: 'Get a Quote',   href: '#contact'      },
+  { label: 'Services',      to: '/services'  },
+  { label: 'Why Choose Us', to: '/about'     },
+  { label: 'Our Process',   to: '/process'   },
+  { label: 'Gallery',       to: '/gallery'   },
+  { label: 'Testimonials',  to: '/#testimonials' },
+  { label: 'Get a Quote',   to: '/contact'   },
 ];
 
 const services = [
@@ -32,7 +33,7 @@ export function Footer() {
 
           {/* Brand col */}
           <div className="lg:col-span-1">
-            <a href="#" className="flex items-center gap-3 mb-5">
+            <Link to="/" className="flex items-center gap-3 mb-5">
               <Logo className="h-10 w-auto" />
               <div className="flex flex-col leading-none">
                 <span className="font-heading font-bold text-base tracking-widest text-[#EAE6DF] uppercase">
@@ -42,7 +43,7 @@ export function Footer() {
                   WA Construction
                 </span>
               </div>
-            </a>
+            </Link>
             <p className="text-[#5E5E68] text-sm leading-relaxed mb-6">
               Perth-made, Perth-proud. Building quality steel patios across the metro area for over 15 years.
             </p>
@@ -71,10 +72,10 @@ export function Footer() {
             <h4 className="text-[10px] font-bold text-[#3E3E48] uppercase tracking-[0.22em] mb-5">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map(link => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-[#5E5E68] hover:text-[#EAE6DF] text-sm transition-colors">
+                <li key={link.to}>
+                  <Link to={link.to} className="text-[#5E5E68] hover:text-[#EAE6DF] text-sm transition-colors">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -85,7 +86,11 @@ export function Footer() {
             <h4 className="text-[10px] font-bold text-[#3E3E48] uppercase tracking-[0.22em] mb-5">Services</h4>
             <ul className="space-y-3">
               {services.map(s => (
-                <li key={s} className="text-[#5E5E68] text-sm">{s}</li>
+                <li key={s}>
+                  <Link to="/services" className="text-[#5E5E68] hover:text-[#EAE6DF] text-sm transition-colors">
+                    {s}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

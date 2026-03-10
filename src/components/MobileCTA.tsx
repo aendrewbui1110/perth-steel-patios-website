@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { Phone } from 'lucide-react';
 
 export function MobileCTA() {
@@ -10,12 +11,12 @@ export function MobileCTA() {
         <Phone size={14} className="text-[#D4622A]" />
         Call Now
       </a>
-      <a
-        href="#contact"
+      <Link
+        to="/contact"
         className="flex-1 flex items-center justify-center bg-[#D4622A] hover:bg-[#B85222] text-white py-3.5 rounded font-bold text-xs uppercase tracking-widest transition-colors"
       >
         Get a Quote
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,24 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation } from 'react-router';
 import { Logo } from './Logo';
 import { Menu, X, Phone } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Services',     href: '#services'     },
-  { name: 'Why Us',       href: '#why-us'       },
-  { name: 'Process',      href: '#process'      },
-  { name: 'Gallery',      href: '#gallery'      },
-  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'Services',     to: '/services',      hash: '#services'     },
+  { name: 'Why Us',       to: '/about',          hash: '#why-us'       },
+  { name: 'Process',      to: '/process',        hash: '#process'      },
+  { name: 'Gallery',      to: '/gallery',        hash: '#gallery'      },
+  { name: 'Testimonials', to: '/#testimonials',  hash: '#testimonials' },
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled]         = useState(false);
+  const [isScrolled, setIsScrolled]           = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  /** On homepage, scroll to section. On other pages, navigate to the page route. */
+  const getNavHref = useCallback(
+    (link: typeof navLinks[0]) => {
+      if (pathname === '/') {
+        // On homepage: Testimonials stays as hash-scroll, others use hash too
+        return link.hash;
+      }
+      // On other pages: navigate to the dedicated page (or hash route for testimonials)
+      return link.to;
+    },
+    [pathname],
+  );
+
+  const isActive = (link: typeof navLinks[0]) => {
+    if (link.to.startsWith('/#')) return false;
+    return pathname === link.to;
+  };
 
   return (
     <>
@@ -33,7 +53,7 @@ export function Navbar() {
           <div className="flex justify-between items-center">
 
             {/* Logo */}
-            <a href="#" className="flex items-center gap-3 group" aria-label="Perth Steel Patios home">
+            <Link to="/" className="flex items-center gap-3 group" aria-label="Perth Steel Patios home">
               <Logo className="h-10 w-auto" />
               <div className="flex flex-col leading-none">
                 <span className="font-heading font-bold text-lg tracking-widest text-[#EAE6DF] uppercase">
@@ -43,28 +63,51 @@ export function Navbar() {
                   WA Construction
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-xs font-semibold text-[#9A9AA4] hover:text-[#EAE6DF] uppercase tracking-widest transition-colors duration-200"
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const href = getNavHref(link);
+                const active = isActive(link);
+
+                // If on homepage, use anchor tags for hash scroll
+                if (pathname === '/') {
+                  return (
+                    <a
+                      key={link.name}
+                      href={href}
+                      className={`text-xs font-semibold uppercase tracking-widest transition-colors duration-200 ${
+                        active ? 'text-[#D4622A]' : 'text-[#9A9AA4] hover:text-[#EAE6DF]'
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                }
+
+                // On other pages, use Link for navigation
+                return (
+                  <Link
+                    key={link.name}
+                    to={href}
+                    className={`text-xs font-semibold uppercase tracking-widest transition-colors duration-200 ${
+                      active ? 'text-[#D4622A]' : 'text-[#9A9AA4] hover:text-[#EAE6DF]'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Desktop CTA */}
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="hidden md:inline-flex items-center gap-2 bg-[#D4622A] hover:bg-[#B85222] text-white px-6 py-2.5 rounded font-bold text-xs uppercase tracking-widest transition-colors duration-200"
             >
               Get a Free Quote
-            </a>
+            </Link>
 
             {/* Mobile toggle */}
             <button
@@ -98,16 +141,35 @@ export function Navbar() {
           </div>
 
           <nav className="flex flex-col gap-1 flex-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1E24] hover:text-[#D4622A] transition-colors tracking-wide uppercase"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const href = getNavHref(link);
+
+              if (pathname === '/') {
+                return (
+                  <a
+                    key={link.name}
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1E24] hover:text-[#D4622A] transition-colors tracking-wide uppercase"
+                  >
+                    {link.name}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.name}
+                  to={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1E24] hover:text-[#D4622A] transition-colors tracking-wide uppercase ${
+                    isActive(link) ? 'text-[#D4622A]' : 'text-[#EAE6DF]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex flex-col gap-3 mt-10">
@@ -118,13 +180,13 @@ export function Navbar() {
               <Phone size={16} className="text-[#D4622A]" />
               1300 000 000
             </a>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center bg-[#D4622A] hover:bg-[#B85222] text-white py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors"
             >
               Get a Free Quote
-            </a>
+            </Link>
           </div>
         </div>
       )}

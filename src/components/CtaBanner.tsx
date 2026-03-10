@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { ArrowRight, Phone } from 'lucide-react';
 
@@ -35,13 +36,13 @@ export function CtaBanner() {
             Let's build something that lasts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-2 px-10 py-5 bg-[#0D0D11] text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-[#1A1A20] transition-colors duration-200 group shadow-xl shadow-black/30"
             >
               Get Your Free Quote
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </a>
+            </Link>
             <a
               href="tel:1300000000"
               className="inline-flex items-center gap-2 px-10 py-5 bg-white/10 border border-white/30 text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-white/20 transition-colors duration-200"
