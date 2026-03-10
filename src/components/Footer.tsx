@@ -7,6 +7,7 @@ const quickLinks = [
   { label: 'Why Choose Us', to: '/about'     },
   { label: 'Our Process',   to: '/process'   },
   { label: 'Gallery',       to: '/gallery'   },
+  { label: 'Blog',          to: '/blog'      },
   { label: 'Testimonials',  to: '/#testimonials' },
   { label: 'Get a Quote',   to: '/contact'   },
 ];

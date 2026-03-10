@@ -7,6 +7,9 @@ import { GalleryPage } from './pages/GalleryPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProcessPage } from './pages/ProcessPage';
 import { ContactPage } from './pages/ContactPage';
+import { SuburbPage } from './pages/SuburbPage';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -20,7 +23,9 @@ export const router = createBrowserRouter([
       { path: '/about', element: <AboutPage /> },
       { path: '/process', element: <ProcessPage /> },
       { path: '/contact', element: <ContactPage /> },
-      { path: '/areas/:suburb', element: <NotFoundPage /> },
+      { path: '/areas/:suburb', element: <SuburbPage /> },
+      { path: '/blog', element: <BlogPage /> },
+      { path: '/blog/:slug', element: <BlogPostPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
