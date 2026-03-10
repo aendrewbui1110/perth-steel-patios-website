@@ -77,7 +77,7 @@ export function BeforeAfter({
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-2xl border border-[#28282F] aspect-video select-none"
+      className="relative overflow-hidden rounded-2xl border border-[#28271F] aspect-video select-none"
       style={{ cursor: isDragging ? 'grabbing' : 'default' }}
     >
       {/* After image (full background) */}
@@ -123,7 +123,7 @@ export function BeforeAfter({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <GripVertical size={18} className="text-[#0D0D11]" />
+        <GripVertical size={18} className="text-[#0C0C0F]" />
       </div>
     </div>
   );

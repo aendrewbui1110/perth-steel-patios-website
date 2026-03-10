@@ -60,7 +60,7 @@ export function Navbar() {
         aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
-            ? 'bg-[#0D0D11]/95 backdrop-blur-md border-b border-[#28282F] py-3 shadow-xl shadow-black/40'
+            ? 'bg-[#0C0C0F]/95 backdrop-blur-md border-b border-[#28271F] py-3 shadow-xl shadow-black/40'
             : 'bg-transparent py-5'
         }`}
       >
@@ -74,7 +74,7 @@ export function Navbar() {
                 <span className="font-heading font-bold text-lg tracking-widest text-[#EAE6DF] uppercase">
                   Perth Steel Patios
                 </span>
-                <span className="text-[9px] uppercase tracking-[0.22em] text-[#D4622A] font-semibold mt-0.5">
+                <span className="text-[9px] uppercase tracking-[0.22em] text-[#C8713A] font-semibold mt-0.5">
                   WA Construction
                 </span>
               </div>
@@ -92,8 +92,8 @@ export function Navbar() {
                     <a
                       key={link.name}
                       href={href}
-                      className={`text-xs font-semibold uppercase tracking-widest transition-colors duration-200 ${
-                        active ? 'text-[#D4622A]' : 'text-[#9A9AA4] hover:text-[#EAE6DF]'
+                      className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                        active ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
                       }`}
                     >
                       {link.name}
@@ -106,8 +106,8 @@ export function Navbar() {
                   <Link
                     key={link.name}
                     to={href}
-                    className={`text-xs font-semibold uppercase tracking-widest transition-colors duration-200 ${
-                      active ? 'text-[#D4622A]' : 'text-[#9A9AA4] hover:text-[#EAE6DF]'
+                    className={`text-xs font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                      active ? 'text-[#C8713A]' : 'text-[#9A9A94] hover:text-[#EAE6DF]'
                     }`}
                   >
                     {link.name}
@@ -119,7 +119,7 @@ export function Navbar() {
             {/* Desktop CTA */}
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center gap-2 bg-[#D4622A] hover:bg-[#B85222] text-white px-6 py-2.5 rounded font-bold text-xs uppercase tracking-widest transition-colors duration-200"
+              className="hidden md:inline-flex items-center gap-2 bg-[#C8713A] hover:bg-[#B5632E] text-white px-6 py-2.5 rounded font-bold text-xs uppercase tracking-widest transition-colors duration-200"
             >
               Get a Free Quote
             </Link>
@@ -140,7 +140,7 @@ export function Navbar() {
 
       {/* Mobile full-screen overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-[#0D0D11] flex flex-col px-6 pt-8 pb-10">
+        <div className="fixed inset-0 z-[100] bg-[#0C0C0F] flex flex-col px-6 pt-8 pb-10">
           <div className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-3">
               <Logo className="h-9 w-auto" />
@@ -150,7 +150,7 @@ export function Navbar() {
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-[#9A9AA4] hover:text-white p-2"
+              className="text-[#9A9A94] hover:text-white p-2"
               aria-label="Close menu"
             >
               <X size={26} />
@@ -167,7 +167,7 @@ export function Navbar() {
                     key={link.name}
                     href={href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1E24] hover:text-[#D4622A] transition-colors tracking-wide uppercase"
+                    className="font-heading text-3xl font-bold text-[#EAE6DF] py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase"
                   >
                     {link.name}
                   </a>
@@ -179,8 +179,8 @@ export function Navbar() {
                   key={link.name}
                   to={href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1E24] hover:text-[#D4622A] transition-colors tracking-wide uppercase ${
-                    isActive(link) ? 'text-[#D4622A]' : 'text-[#EAE6DF]'
+                  className={`font-heading text-3xl font-bold py-4 border-b border-[#1E1D1A] hover:text-[#C8713A] transition-colors tracking-wide uppercase ${
+                    isActive(link) ? 'text-[#C8713A]' : 'text-[#EAE6DF]'
                   }`}
                 >
                   {link.name}
@@ -192,15 +192,15 @@ export function Navbar() {
           <div className="flex flex-col gap-3 mt-10">
             <a
               href="tel:1300000000"
-              className="flex items-center justify-center gap-2 border border-[#2A2A33] text-[#EAE6DF] py-4 rounded font-semibold text-sm uppercase tracking-widest"
+              className="flex items-center justify-center gap-2 border border-[#2A2922] text-[#EAE6DF] py-4 rounded font-semibold text-sm uppercase tracking-widest"
             >
-              <Phone size={16} className="text-[#D4622A]" />
+              <Phone size={16} className="text-[#C8713A]" />
               1300 000 000
             </a>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center bg-[#D4622A] hover:bg-[#B85222] text-white py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors"
+              className="flex items-center justify-center bg-[#C8713A] hover:bg-[#B5632E] text-white py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors"
             >
               Get a Free Quote
             </Link>

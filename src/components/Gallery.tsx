@@ -31,17 +31,17 @@ export function Gallery() {
 
   return (
     <>
-      <section id="gallery" className="py-24 bg-[#111115]">
+      <section id="gallery" className="py-24 bg-[#131311] border-t border-[#22211E]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header + filters */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
             <div className="max-w-xl">
-              <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">Our Work</h2>
+              <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">Our Work</h2>
               <h3 className="text-4xl md:text-5xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4 leading-tight">
                 Real Patios,<br />Real Perth Homes
               </h3>
-              <div className="w-16 h-0.5 bg-[#D4622A]" />
+              <div className="w-16 h-0.5 bg-[#C8713A]" />
             </div>
 
             {/* Filter tabs */}
@@ -53,8 +53,8 @@ export function Gallery() {
                   aria-pressed={filter === f}
                   className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-widest transition-colors duration-150 ${
                     filter === f
-                      ? 'bg-[#D4622A] text-white'
-                      : 'bg-[#1A1A20] border border-[#28282F] text-[#858590] hover:border-[#D4622A]/40 hover:text-[#EAE6DF]'
+                      ? 'bg-[#C8713A] text-white'
+                      : 'bg-[#1A1917] border border-[#28271F] text-[#858580] hover:border-[#C8713A]/40 hover:text-[#EAE6DF]'
                   }`}
                 >
                   {f}
@@ -88,12 +88,12 @@ export function Gallery() {
                     referrerPolicy="no-referrer"
                   />
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D11]/90 via-[#0D0D11]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                    <span className="text-[#D4622A] text-[10px] font-bold uppercase tracking-widest mb-1">{project.type}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0F]/90 via-[#0C0C0F]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                    <span className="text-[#C8713A] text-[10px] font-bold uppercase tracking-widest mb-1">{project.type}</span>
                     <h4 className="text-[#EAE6DF] font-heading font-bold text-lg uppercase tracking-wide translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       {project.title}
                     </h4>
-                    <span className="text-[#858590] text-xs uppercase tracking-wider translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                    <span className="text-[#858580] text-xs uppercase tracking-wider translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                       {project.location}
                     </span>
                   </div>
@@ -122,7 +122,7 @@ export function Gallery() {
               role="dialog"
               aria-modal="true"
               aria-label="Project detail view"
-              className="bg-[#18181D] border border-[#28282F] rounded-xl max-w-lg w-full overflow-hidden"
+              className="bg-[#18171A] border border-[#28271F] rounded-xl max-w-lg w-full overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
               <div className="relative">
@@ -135,23 +135,23 @@ export function Gallery() {
                 <button
                   ref={closeBtnRef}
                   onClick={() => setLightbox(null)}
-                  className="absolute top-3 right-3 w-8 h-8 bg-[#0D0D11]/80 rounded-full flex items-center justify-center text-[#9A9AA4] hover:text-white"
+                  className="absolute top-3 right-3 w-8 h-8 bg-[#0C0C0F]/80 rounded-full flex items-center justify-center text-[#9A9A94] hover:text-white"
                   aria-label="Close"
                 >
                   <X size={16} />
                 </button>
               </div>
               <div className="p-7">
-                <span className="text-[#D4622A] text-[10px] font-bold uppercase tracking-widest">{lightbox.type}</span>
+                <span className="text-[#C8713A] text-[10px] font-bold uppercase tracking-widest">{lightbox.type}</span>
                 <h3 className="font-heading text-xl font-bold text-[#EAE6DF] uppercase tracking-wide mt-1 mb-1">
                   {lightbox.title}
                 </h3>
-                <p className="text-[#858590] text-xs uppercase tracking-wider mb-4">{lightbox.location}</p>
-                <p className="text-[#858590] text-sm leading-relaxed mb-6">{lightbox.description}</p>
+                <p className="text-[#858580] text-xs uppercase tracking-wider mb-4">{lightbox.location}</p>
+                <p className="text-[#858580] text-sm leading-relaxed mb-6">{lightbox.description}</p>
                 <a
                   href="#contact"
                   onClick={() => setLightbox(null)}
-                  className="flex items-center justify-center gap-2 w-full bg-[#D4622A] hover:bg-[#B85222] text-white py-3.5 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full bg-[#C8713A] hover:bg-[#B5632E] text-white px-6 py-3 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
                 >
                   Get Something Similar <ArrowRight size={15} />
                 </a>

@@ -30,8 +30,8 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-[#1A1A20] border border-[#2A2A33] rounded text-[#EAE6DF] placeholder-[#4A4A54] text-sm focus:outline-none focus:border-[#D4622A] transition-colors duration-200';
-  const labelClass = 'block text-[10px] font-bold text-[#858590] uppercase tracking-[0.18em] mb-2';
+    'w-full px-4 py-3 bg-[#1A1917] border border-[#2A2922] rounded text-[#EAE6DF] placeholder-[#4A4A44] text-sm focus:outline-none focus:border-[#C8713A] transition-colors duration-200';
+  const labelClass = 'block text-[10px] font-bold text-[#858580] uppercase tracking-[0.18em] mb-2';
 
   const formCard = (
     <motion.div
@@ -39,13 +39,13 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-[#1A1A20] border border-[#26262E] rounded-xl p-8 md:p-10"
+      className="bg-[#1A1917] border border-[#262520] rounded-xl p-8 md:p-10"
     >
       {submitted ? (
         <div className="flex flex-col items-center justify-center h-full gap-5 py-16 text-center" aria-live="polite">
-          <CheckCircle2 size={56} className="text-[#4A7C59]" />
+          <CheckCircle2 size={56} className="text-[#3D6B5C]" />
           <h4 className="font-heading text-2xl font-bold text-[#EAE6DF] uppercase">Quote Request Sent!</h4>
-          <p className="text-[#858590] max-w-xs text-sm leading-relaxed">
+          <p className="text-[#858580] max-w-xs text-sm leading-relaxed">
             We'll call you back within 1 business day to discuss your project.
           </p>
         </div>
@@ -110,16 +110,16 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-4 font-bold text-sm uppercase tracking-widest rounded transition-all duration-200 ${
+            className={`w-full py-3 font-bold text-sm uppercase tracking-widest rounded transition-all duration-200 ${
               isSubmitting
-                ? 'bg-[#2A2A33] text-[#5E5E68] cursor-not-allowed'
-                : 'bg-[#D4622A] text-white hover:bg-[#B85222]'
+                ? 'bg-[#2A2922] text-[#5E5E58] cursor-not-allowed'
+                : 'bg-[#C8713A] text-white hover:bg-[#B5632E]'
             }`}
           >
             {isSubmitting ? 'Sending...' : 'Send My Quote Request'}
           </button>
 
-          <p className="text-center text-[#5E5E68] text-xs">
+          <p className="text-center text-[#5E5E58] text-xs">
             We'll call you back within 1 business day.
           </p>
         </form>
@@ -132,18 +132,18 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
   }
 
   return (
-    <section id="contact" className="py-24 bg-[#141418]">
+    <section id="contact" className="py-24 bg-[#151412]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         {showHeading && (
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">Contact Us</h2>
+            <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">Contact Us</h2>
             <h3 className="text-4xl md:text-5xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4 leading-tight">
               Get a Free Quote
             </h3>
-            <div className="w-16 h-0.5 bg-[#D4622A] mx-auto mb-6" />
-            <p className="text-[#858590] leading-relaxed">
+            <div className="w-16 h-0.5 bg-[#C8713A] mx-auto mb-6" />
+            <p className="text-[#858580] leading-relaxed">
               Fill out the form below or call us directly. We'll call you back within 1 business day.
             </p>
           </div>
@@ -166,28 +166,28 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
               <h4 className="font-heading text-2xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-6">
                 Contact Information
               </h4>
-              <p className="text-[#858590] leading-relaxed mb-8">
+              <p className="text-[#858580] leading-relaxed mb-8">
                 We're a local Western Australian business dedicated to quality steel construction
                 across the Perth metro area.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { icon: Phone, label: 'Phone', content: <a href="tel:1300000000" className="text-[#EAE6DF] hover:text-[#D4622A] transition-colors text-lg font-medium">1300 000 000</a> },
-                  { icon: Mail,  label: 'Email', content: <a href="mailto:quotes@perthsteelpatios.com.au" className="text-[#858590] hover:text-[#D4622A] transition-colors font-medium break-all">quotes@perthsteelpatios.com.au</a> },
+                  { icon: Phone, label: 'Phone', content: <a href="tel:1300000000" className="text-[#EAE6DF] hover:text-[#C8713A] transition-colors text-lg font-medium">1300 000 000</a> },
+                  { icon: Mail,  label: 'Email', content: <a href="mailto:quotes@perthsteelpatios.com.au" className="text-[#858580] hover:text-[#C8713A] transition-colors font-medium break-all">quotes@perthsteelpatios.com.au</a> },
                   { icon: Clock, label: 'Hours', content: (
                     <>
-                      <p className="text-[#858590] font-medium">Mon-Fri: 7:00 AM - 5:00 PM</p>
-                      <p className="text-[#5E5E68] text-sm">Sat: By Appointment</p>
+                      <p className="text-[#858580] font-medium">Mon-Fri: 7:00 AM - 5:00 PM</p>
+                      <p className="text-[#5E5E58] text-sm">Sat: By Appointment</p>
                     </>
                   )},
                 ].map(({ icon: Icon, label, content }) => (
                   <div key={label} className="flex items-start gap-4">
-                    <div className="w-11 h-11 bg-[#D4622A]/10 border border-[#D4622A]/20 rounded flex items-center justify-center flex-shrink-0">
-                      <Icon size={20} className="text-[#D4622A]" />
+                    <div className="w-11 h-11 bg-[#C8713A]/10 border border-[#C8713A]/20 rounded flex items-center justify-center flex-shrink-0">
+                      <Icon size={20} className="text-[#C8713A]" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-[#5E5E68] uppercase tracking-widest mb-1">{label}</p>
+                      <p className="text-[10px] font-bold text-[#5E5E58] uppercase tracking-widest mb-1">{label}</p>
                       {content}
                     </div>
                   </div>
@@ -196,18 +196,18 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
             </div>
 
             {/* Service area */}
-            <div className="bg-[#1A1A20] border border-[#26262E] rounded-xl p-7">
+            <div className="bg-[#1A1917] border border-[#262520] rounded-xl p-7">
               <div className="flex items-center gap-3 mb-4">
-                <MapPin size={20} className="text-[#D4622A]" />
+                <MapPin size={20} className="text-[#C8713A]" />
                 <h4 className="font-heading text-lg font-bold text-[#EAE6DF] uppercase tracking-wide">Service Area</h4>
               </div>
-              <p className="text-[#858590] leading-relaxed text-sm mb-4">
+              <p className="text-[#858580] leading-relaxed text-sm mb-4">
                 We service the entire Perth Metropolitan region — from Yanchep in the north
                 to Mandurah in the south, and east to the Hills and beyond.
               </p>
               <div className="flex flex-wrap gap-2">
                 {['Joondalup','Mandurah','Rockingham','Armadale','Ellenbrook','Baldivis','Fremantle','Subiaco','Canning Vale','Karrinyup','Cottesloe','Swan Valley'].map(s => (
-                  <span key={s} className="text-[10px] font-semibold uppercase tracking-wider text-[#5E5E68] bg-[#111115] border border-[#22222A] px-2.5 py-1 rounded">
+                  <span key={s} className="text-[10px] font-semibold uppercase tracking-wider text-[#5E5E58] bg-[#131311] border border-[#22211E] px-2.5 py-1 rounded">
                     {s}
                   </span>
                 ))}

@@ -28,12 +28,12 @@ export default function BlogPage() {
       />
 
       {/* Hero Banner */}
-      <section className="pt-32 pb-16 bg-[#111115] border-b border-[#1A1A20]">
+      <section className="pt-32 pb-16 bg-[#131311] border-b border-[#1A1917]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-xs text-[#5E5E68] mb-8">
-            <Link to="/" className="hover:text-[#D4622A] transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-xs text-[#5E5E58] mb-8">
+            <Link to="/" className="hover:text-[#C8713A] transition-colors">Home</Link>
             <ChevronRight size={12} />
-            <span className="text-[#858590]">Blog</span>
+            <span className="text-[#858580]">Blog</span>
           </nav>
 
           <motion.div
@@ -41,19 +41,19 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">
+            <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">
               Blog
             </h2>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAE6DF] uppercase tracking-tight leading-tight">
               Patio Guides & Ideas
             </h1>
-            <div className="w-16 h-0.5 bg-[#D4622A] mt-6" />
+            <div className="w-16 h-0.5 bg-[#C8713A] mt-6" />
           </motion.div>
         </div>
       </section>
 
       {/* Category Filter + Posts */}
-      <section className="py-24 bg-[#0D0D11]">
+      <section className="py-24 bg-[#0C0C0F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Tabs */}
           <div className="flex flex-wrap gap-2 mb-12">
@@ -63,8 +63,8 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(cat.slug)}
                 className={`px-5 py-2.5 rounded text-xs font-bold uppercase tracking-widest transition-all duration-200 ${
                   activeCategory === cat.slug
-                    ? 'bg-[#D4622A] text-white'
-                    : 'bg-[#1C1C22] text-[#5E5E68] border border-[#22222A] hover:border-[#D4622A]/50 hover:text-[#EAE6DF]'
+                    ? 'bg-[#C8713A] text-white'
+                    : 'bg-[#1C1A18] text-[#5E5E58] border border-[#22211E] hover:border-[#C8713A]/50 hover:text-[#EAE6DF]'
                 }`}
               >
                 {cat.name}
@@ -93,28 +93,28 @@ export default function BlogPage() {
                     >
                       <Link
                         to={`/blog/${post.slug}`}
-                        className="group block bg-[#1C1C22] border border-[#22222A] rounded-xl overflow-hidden hover:border-[#D4622A]/50 hover:-translate-y-1 transition-all duration-300"
+                        className="group block bg-[#1C1A18] border border-[#22211E] rounded-xl overflow-hidden hover:border-[#C8713A]/50 hover:-translate-y-1 transition-all duration-300"
                       >
                         {/* Image placeholder */}
-                        <div className="aspect-[16/9] bg-gradient-to-br from-[#1C1C22] to-[#141418] flex items-center justify-center">
-                          <ImageIcon className="w-6 h-6 text-[#28282F]" />
+                        <div className="aspect-[16/9] bg-gradient-to-br from-[#1C1A18] to-[#151412] flex items-center justify-center">
+                          <ImageIcon className="w-6 h-6 text-[#28271F]" />
                         </div>
 
                         <div className="p-6">
                           {/* Category badge */}
-                          <span className="inline-block text-[10px] font-bold text-[#D4622A] uppercase tracking-[0.2em] bg-[#D4622A]/10 px-2.5 py-1 rounded mb-3">
+                          <span className="inline-block text-[10px] font-bold text-[#C8713A] uppercase tracking-[0.2em] bg-[#C8713A]/10 px-2.5 py-1 rounded mb-3">
                             {blogCategories.find((c) => c.slug === post.category)?.name ?? post.category}
                           </span>
 
-                          <h3 className="text-[#EAE6DF] font-bold text-base leading-snug mb-2 group-hover:text-[#D4622A] transition-colors duration-200">
+                          <h3 className="text-[#EAE6DF] font-bold text-base leading-snug mb-2 group-hover:text-[#C8713A] transition-colors duration-200">
                             {post.title}
                           </h3>
 
-                          <p className="text-[#5E5E68] text-sm leading-relaxed line-clamp-2 mb-4">
+                          <p className="text-[#5E5E58] text-sm leading-relaxed line-clamp-2 mb-4">
                             {post.excerpt}
                           </p>
 
-                          <div className="flex items-center justify-between text-xs text-[#3E3E48]">
+                          <div className="flex items-center justify-between text-xs text-[#3E3D38]">
                             <span>{new Date(post.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
                             <span className="flex items-center gap-1">
                               <Clock size={11} />
@@ -127,8 +127,8 @@ export default function BlogPage() {
                   ))}
                 </div>
               ) : (
-                <div className="bg-[#1C1C22] border border-[#22222A] rounded-xl p-10 text-center">
-                  <p className="text-[#858590]">
+                <div className="bg-[#1C1A18] border border-[#22211E] rounded-xl p-10 text-center">
+                  <p className="text-[#858580]">
                     New articles in this category are coming soon. Check back shortly.
                   </p>
                 </div>
@@ -139,7 +139,7 @@ export default function BlogPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-[#D4622A]">
+      <section className="py-16 bg-[#C8713A]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight mb-4">
             Have a Question?
@@ -149,7 +149,7 @@ export default function BlogPage() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#D4622A] hover:bg-[#EAE6DF] px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-white text-[#C8713A] hover:bg-[#EAE6DF] px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
           >
             Get in Touch <ArrowRight size={16} />
           </Link>

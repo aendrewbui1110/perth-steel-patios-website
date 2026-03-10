@@ -32,8 +32,8 @@ export function FloatingQuote() {
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E68] text-sm focus:outline-none focus:border-[#D4622A] focus:ring-1 focus:ring-[#D4622A] transition-colors duration-200';
-  const labelClass = 'block text-[10px] font-bold text-[#858590] uppercase tracking-[0.18em] mb-2';
+    'w-full px-4 py-3 bg-[#151412] border border-[#28271F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E58] text-sm focus:outline-none focus:border-[#C8713A] focus:ring-1 focus:ring-[#C8713A] transition-colors duration-200';
+  const labelClass = 'block text-[10px] font-bold text-[#858580] uppercase tracking-[0.18em] mb-2';
 
   return (
     <div className="fixed right-6 bottom-6 z-30 hidden md:block">
@@ -46,16 +46,16 @@ export function FloatingQuote() {
             transition={{ duration: 0.25, ease: 'easeOut' }}
             role="dialog"
             aria-label="Quick quote form"
-            className="absolute bottom-16 right-0 w-80 max-w-sm bg-[#1C1C22] border border-[#22222A] rounded-2xl shadow-2xl overflow-hidden"
+            className="absolute bottom-16 right-0 w-80 max-w-sm bg-[#1C1A18] border border-[#22211E] rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-[#22222A]">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#22211E]">
               <h3 className="font-heading text-base font-bold text-[#EAE6DF] uppercase tracking-wide">
                 Quick Quote
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-[#5E5E68] hover:text-[#EAE6DF] transition-colors"
+                className="text-[#5E5E58] hover:text-[#EAE6DF] transition-colors"
                 aria-label="Close quote form"
               >
                 <X size={18} />
@@ -66,8 +66,8 @@ export function FloatingQuote() {
             <div className="p-5">
               {submitted ? (
                 <div className="flex flex-col items-center gap-3 py-6 text-center">
-                  <CheckCircle2 size={40} className="text-[#4A7C59]" />
-                  <p className="text-sm text-[#858590] leading-relaxed">
+                  <CheckCircle2 size={40} className="text-[#3D6B5C]" />
+                  <p className="text-sm text-[#858580] leading-relaxed">
                     We'll call you within 24 hours
                   </p>
                 </div>
@@ -102,8 +102,8 @@ export function FloatingQuote() {
                     disabled={isSubmitting}
                     className={`w-full py-3 font-bold text-sm uppercase tracking-widest rounded-lg transition-all duration-200 flex items-center justify-center gap-2 ${
                       isSubmitting
-                        ? 'bg-[#2A2A33] text-[#5E5E68] cursor-not-allowed'
-                        : 'bg-[#D4622A] text-white hover:bg-[#B85222]'
+                        ? 'bg-[#2A2922] text-[#5E5E58] cursor-not-allowed'
+                        : 'bg-[#C8713A] text-white hover:bg-[#B5632E]'
                     }`}
                   >
                     {isSubmitting ? (
@@ -129,12 +129,12 @@ export function FloatingQuote() {
         initial={{ scale: 1 }}
         animate={hasPulsed ? {} : { scale: [1, 1.15, 1, 1.1, 1] }}
         transition={{ duration: 1.2, ease: 'easeInOut' }}
-        className="relative w-14 h-14 rounded-full bg-[#D4622A] text-white shadow-lg hover:bg-[#B85222] transition-colors duration-200 flex items-center justify-center group"
+        className="relative w-14 h-14 rounded-full bg-[#C8713A] text-white shadow-lg hover:bg-[#B5632E] transition-colors duration-200 flex items-center justify-center group"
         aria-label="Open quick quote form"
       >
         <MessageSquare size={24} />
         {/* Tooltip */}
-        <span className="absolute right-full mr-3 whitespace-nowrap bg-[#1C1C22] text-[#EAE6DF] text-xs font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#22222A]">
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-[#1C1A18] text-[#EAE6DF] text-xs font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#22211E]">
           Get a Quick Quote
         </span>
       </motion.button>

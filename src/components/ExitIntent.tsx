@@ -81,8 +81,8 @@ export function ExitIntent() {
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-[#141418] border border-[#28282F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E68] text-sm focus:outline-none focus:border-[#D4622A] focus:ring-1 focus:ring-[#D4622A] transition-colors duration-200';
-  const labelClass = 'block text-[10px] font-bold text-[#858590] uppercase tracking-[0.18em] mb-2';
+    'w-full px-4 py-3 bg-[#151412] border border-[#28271F] rounded-lg text-[#EAE6DF] placeholder-[#5E5E58] text-sm focus:outline-none focus:border-[#C8713A] focus:ring-1 focus:ring-[#C8713A] transition-colors duration-200';
+  const labelClass = 'block text-[10px] font-bold text-[#858580] uppercase tracking-[0.18em] mb-2';
 
   return (
     <AnimatePresence>
@@ -105,13 +105,13 @@ export function ExitIntent() {
             role="dialog"
             aria-modal="true"
             aria-label="Exit intent offer"
-            className="relative w-full max-w-md mx-4 bg-[#1C1C22] border border-[#22222A] border-t-2 border-t-[#D4622A] rounded-2xl p-8"
+            className="relative w-full max-w-md mx-4 bg-[#1C1A18] border border-[#22211E] border-t-2 border-t-[#C8713A] rounded-2xl p-8"
           >
             {/* Close button */}
             <button
               ref={closeBtnRef}
               onClick={handleClose}
-              className="absolute top-4 right-4 text-[#5E5E68] hover:text-[#EAE6DF] transition-colors"
+              className="absolute top-4 right-4 text-[#5E5E58] hover:text-[#EAE6DF] transition-colors"
               aria-label="Close popup"
             >
               <X size={20} />
@@ -119,8 +119,8 @@ export function ExitIntent() {
 
             {submitted ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
-                <CheckCircle2 size={48} className="text-[#4A7C59]" />
-                <p className="text-[#858590] text-sm leading-relaxed">
+                <CheckCircle2 size={48} className="text-[#3D6B5C]" />
+                <p className="text-[#858580] text-sm leading-relaxed">
                   We'll be in touch shortly
                 </p>
               </div>
@@ -129,7 +129,7 @@ export function ExitIntent() {
                 <h3 className="font-heading text-2xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-2">
                   Before You Go...
                 </h3>
-                <p className="text-[#858590] text-sm leading-relaxed mb-6">
+                <p className="text-[#858580] text-sm leading-relaxed mb-6">
                   Get a free design consultation — no obligation, no pressure.
                 </p>
 
@@ -155,8 +155,8 @@ export function ExitIntent() {
                     disabled={isSubmitting}
                     className={`w-full py-3.5 font-bold text-sm uppercase tracking-widest rounded-lg transition-all duration-200 flex items-center justify-center gap-2 ${
                       isSubmitting
-                        ? 'bg-[#2A2A33] text-[#5E5E68] cursor-not-allowed'
-                        : 'bg-[#D4622A] text-white hover:bg-[#B85222]'
+                        ? 'bg-[#2A2922] text-[#5E5E58] cursor-not-allowed'
+                        : 'bg-[#C8713A] text-white hover:bg-[#B5632E]'
                     }`}
                   >
                     {isSubmitting ? (

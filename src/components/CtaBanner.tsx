@@ -4,7 +4,7 @@ import { ArrowRight, Phone } from 'lucide-react';
 
 export function CtaBanner() {
   return (
-    <section className="relative py-24 bg-[#D4622A] overflow-hidden">
+    <section className="relative py-24 bg-[#C8713A] overflow-hidden">
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -38,14 +38,14 @@ export function CtaBanner() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-[#0D0D11] text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-[#1A1A20] transition-colors duration-200 group shadow-xl shadow-black/30"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#0C0C0F] text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-[#1A1917] transition-colors duration-200 group shadow-xl shadow-black/30"
             >
               Get Your Free Quote
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
             <a
               href="tel:1300000000"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-white/10 border border-white/30 text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-white/20 transition-colors duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/30 text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-white/20 transition-colors duration-200"
             >
               <Phone size={16} />
               1300 000 000

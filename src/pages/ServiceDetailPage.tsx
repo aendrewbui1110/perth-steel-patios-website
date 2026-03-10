@@ -78,17 +78,17 @@ export default function ServiceDetailPage() {
           description="The service you're looking for could not be found."
           path={`/services/${slug}`}
         />
-        <section className="pt-32 pb-24 bg-[#0D0D11] min-h-screen">
+        <section className="pt-32 pb-24 bg-[#0C0C0F] min-h-screen">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-4">
               Service Not Found
             </h1>
-            <p className="text-[#858590] mb-8">
+            <p className="text-[#858580] mb-8">
               We couldn't find the service you're looking for. Check out our full range below.
             </p>
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 bg-[#D4622A] hover:bg-[#B85222] text-white px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-[#C8713A] hover:bg-[#B5632E] text-white px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
             >
               View All Services <ArrowRight size={16} />
             </Link>
@@ -112,15 +112,15 @@ export default function ServiceDetailPage() {
       />
 
       {/* Hero Banner */}
-      <section className="pt-32 pb-16 bg-[#111115] border-b border-[#1A1A20]">
+      <section className="pt-32 pb-16 bg-[#131311] border-b border-[#1A1917]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-[#5E5E68] mb-8">
-            <Link to="/" className="hover:text-[#D4622A] transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-xs text-[#5E5E58] mb-8">
+            <Link to="/" className="hover:text-[#C8713A] transition-colors">Home</Link>
             <ChevronRight size={12} />
-            <Link to="/services" className="hover:text-[#D4622A] transition-colors">Services</Link>
+            <Link to="/services" className="hover:text-[#C8713A] transition-colors">Services</Link>
             <ChevronRight size={12} />
-            <span className="text-[#858590]">{service.title}</span>
+            <span className="text-[#858580]">{service.title}</span>
           </nav>
 
           <motion.div
@@ -128,19 +128,19 @@ export default function ServiceDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">
+            <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">
               {service.number}
             </h2>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAE6DF] uppercase tracking-tight leading-tight">
               {service.title}
             </h1>
-            <div className="w-16 h-0.5 bg-[#D4622A] mt-6" />
+            <div className="w-16 h-0.5 bg-[#C8713A] mt-6" />
           </motion.div>
         </div>
       </section>
 
       {/* Two-Column Content */}
-      <section className="py-24 bg-[#0D0D11]">
+      <section className="py-24 bg-[#0C0C0F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
@@ -153,7 +153,7 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5 }}
             >
               {/* Description */}
-              <p className="text-lg text-[#858590] leading-relaxed mb-10">
+              <p className="text-lg text-[#858580] leading-relaxed mb-10">
                 {description}
               </p>
 
@@ -165,25 +165,25 @@ export default function ServiceDetailPage() {
                 <ul className="space-y-4">
                   {benefits.map((benefit) => (
                     <li key={benefit} className="flex items-start gap-3">
-                      <CheckCircle size={20} className="text-[#D4622A] flex-shrink-0 mt-0.5" />
-                      <span className="text-[#858590] leading-relaxed">{benefit}</span>
+                      <CheckCircle size={20} className="text-[#3D6B5C] flex-shrink-0 mt-0.5" />
+                      <span className="text-[#858580] leading-relaxed">{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* Engineering & Materials */}
-              <div className="bg-[#141418] border border-[#22222A] rounded-xl p-8">
+              <div className="bg-[#151412] border border-[#22211E] rounded-xl p-8">
                 <h2 className="text-xl font-bold text-[#EAE6DF] uppercase tracking-wide mb-4">
                   Engineering & Materials
                 </h2>
-                <p className="text-[#858590] leading-relaxed mb-4">
+                <p className="text-[#858580] leading-relaxed mb-4">
                   Every {service.title.toLowerCase()} we build uses BlueScope steel framing and Colorbond
                   roofing — the Australian standard for strength and corrosion resistance. Our structures
                   are engineered to comply with AS 1684 and local wind-loading requirements for the Perth
                   metro area.
                 </p>
-                <p className="text-[#858590] leading-relaxed">
+                <p className="text-[#858580] leading-relaxed">
                   All steelwork is hot-dip galvanised or powder-coated for long-term durability. We specify
                   materials rated for the harsh WA climate — high UV, coastal salt spray, and summer storms
                   are all factored into the engineering.
@@ -200,55 +200,55 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5, delay: 0.15 }}
             >
               {/* Image placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-[#1C1C22] to-[#141418] border border-[#22222A] rounded-xl flex items-center justify-center">
-                <ImageIcon className="w-8 h-8 text-[#28282F]" />
+              <div className="aspect-[4/3] bg-gradient-to-br from-[#1C1A18] to-[#151412] border border-[#22211E] rounded-xl flex items-center justify-center">
+                <ImageIcon className="w-8 h-8 text-[#28271F]" />
               </div>
 
               {/* Quick Specs */}
-              <div className="bg-[#141418] border border-[#22222A] rounded-xl p-6 space-y-4">
+              <div className="bg-[#151412] border border-[#22211E] rounded-xl p-6 space-y-4">
                 <h3 className="text-sm font-bold text-[#EAE6DF] uppercase tracking-widest mb-2">
                   Quick Specs
                 </h3>
                 {specs && (
                   <>
                     <div className="flex items-center gap-3 text-sm">
-                      <Wrench size={16} className="text-[#D4622A] flex-shrink-0" />
-                      <span className="text-[#5E5E68]">Material:</span>
-                      <span className="text-[#858590] ml-auto text-right">{specs.material}</span>
+                      <Wrench size={16} className="text-[#C8713A] flex-shrink-0" />
+                      <span className="text-[#5E5E58]">Material:</span>
+                      <span className="text-[#858580] ml-auto text-right">{specs.material}</span>
                     </div>
-                    <div className="border-t border-[#22222A]" />
+                    <div className="border-t border-[#22211E]" />
                     <div className="flex items-center gap-3 text-sm">
-                      <Clock size={16} className="text-[#D4622A] flex-shrink-0" />
-                      <span className="text-[#5E5E68]">Typical Build:</span>
-                      <span className="text-[#858590] ml-auto">{specs.buildTime}</span>
+                      <Clock size={16} className="text-[#C8713A] flex-shrink-0" />
+                      <span className="text-[#5E5E58]">Typical Build:</span>
+                      <span className="text-[#858580] ml-auto">{specs.buildTime}</span>
                     </div>
-                    <div className="border-t border-[#22222A]" />
+                    <div className="border-t border-[#22211E]" />
                     <div className="flex items-center gap-3 text-sm">
-                      <Shield size={16} className="text-[#D4622A] flex-shrink-0" />
-                      <span className="text-[#5E5E68]">Warranty:</span>
-                      <span className="text-[#858590] ml-auto">{specs.warranty}</span>
+                      <Shield size={16} className="text-[#C8713A] flex-shrink-0" />
+                      <span className="text-[#5E5E58]">Warranty:</span>
+                      <span className="text-[#858580] ml-auto">{specs.warranty}</span>
                     </div>
-                    <div className="border-t border-[#22222A]" />
+                    <div className="border-t border-[#22211E]" />
                     <div className="flex items-center gap-3 text-sm">
-                      <Building size={16} className="text-[#D4622A] flex-shrink-0" />
-                      <span className="text-[#5E5E68]">Council Approval:</span>
-                      <span className="text-[#858590] ml-auto">Included</span>
+                      <Building size={16} className="text-[#C8713A] flex-shrink-0" />
+                      <span className="text-[#5E5E58]">Council Approval:</span>
+                      <span className="text-[#858580] ml-auto">Included</span>
                     </div>
                   </>
                 )}
               </div>
 
               {/* CTA Card */}
-              <div className="bg-[#D4622A]/10 border border-[#D4622A]/25 rounded-xl p-6 text-center">
+              <div className="bg-[#C8713A]/10 border border-[#C8713A]/25 rounded-xl p-6 text-center">
                 <h3 className="text-lg font-bold text-[#EAE6DF] mb-2">
                   Get a Free Quote for {service.title}
                 </h3>
-                <p className="text-[#858590] text-sm mb-5 leading-relaxed">
+                <p className="text-[#858580] text-sm mb-5 leading-relaxed">
                   Free on-site measure, design consultation, and no-obligation quote.
                 </p>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-[#D4622A] hover:bg-[#B85222] text-white px-6 py-3.5 rounded font-bold text-xs uppercase tracking-widest transition-colors duration-200"
+                  className="inline-flex items-center gap-2 bg-[#C8713A] hover:bg-[#B5632E] text-white px-6 py-3.5 rounded font-bold text-xs uppercase tracking-widest transition-colors duration-200"
                 >
                   Request a Quote <ArrowRight size={14} />
                 </Link>
@@ -259,9 +259,9 @@ export default function ServiceDetailPage() {
       </section>
 
       {/* Related Services */}
-      <section className="py-20 bg-[#111115] border-t border-[#1A1A20]">
+      <section className="py-20 bg-[#131311] border-t border-[#1A1917]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xs font-bold text-[#D4622A] uppercase tracking-[0.2em] mb-3">
+          <h2 className="text-xs font-bold text-[#C8713A] uppercase tracking-[0.2em] mb-3">
             Other Services
           </h2>
           <h3 className="text-3xl font-bold text-[#EAE6DF] uppercase tracking-tight mb-10">
@@ -279,19 +279,19 @@ export default function ServiceDetailPage() {
               >
                 <Link
                   to={`/services/${related.slug}`}
-                  className="group relative block bg-[#1C1C22] border border-[#22222A] rounded-xl p-7 hover:border-[#D4622A]/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className="group relative block bg-[#1C1A18] border border-[#22211E] rounded-xl p-7 hover:border-[#C8713A]/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
-                  <span className="absolute top-3 right-4 font-heading text-6xl font-bold text-[#D4622A]/5 group-hover:text-[#D4622A]/10 transition-colors leading-none select-none">
+                  <span className="absolute top-3 right-4 font-heading text-6xl font-bold text-[#C8713A]/5 group-hover:text-[#C8713A]/10 transition-colors leading-none select-none">
                     {related.number}
                   </span>
                   <div className="relative z-10">
                     <h4 className="font-heading text-base font-bold text-[#EAE6DF] uppercase tracking-wide mb-2">
                       {related.title}
                     </h4>
-                    <p className="text-[#858590] text-sm leading-relaxed mb-4">
+                    <p className="text-[#858580] text-sm leading-relaxed mb-4">
                       {related.description}
                     </p>
-                    <span className="flex items-center gap-2 text-[#D4622A] text-xs font-bold uppercase tracking-widest group-hover:gap-3 transition-all duration-200">
+                    <span className="flex items-center gap-2 text-[#C8713A] text-xs font-bold uppercase tracking-widest group-hover:gap-3 transition-all duration-200">
                       View Details <ArrowRight size={12} />
                     </span>
                   </div>
@@ -303,7 +303,7 @@ export default function ServiceDetailPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-[#D4622A]">
+      <section className="py-16 bg-[#C8713A]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight mb-4">
             Ready to Get Started?
@@ -313,7 +313,7 @@ export default function ServiceDetailPage() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#D4622A] hover:bg-[#EAE6DF] px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-white text-[#C8713A] hover:bg-[#EAE6DF] px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-colors duration-200"
           >
             Get a Free Quote <ArrowRight size={16} />
           </Link>

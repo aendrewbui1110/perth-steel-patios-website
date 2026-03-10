@@ -33,7 +33,7 @@ export function HeroVideo({ videoSrc = '', posterImage = heroBg }: HeroVideoProp
   const showVideo = videoSrc && !videoFailed && !isMobile;
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#0D0D11]">
+    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#0C0C0F]">
       {/* Background: video or poster */}
       <div className="absolute inset-0 z-0">
         {showVideo ? (
@@ -57,8 +57,8 @@ export function HeroVideo({ videoSrc = '', posterImage = heroBg }: HeroVideoProp
           />
         )}
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D11] via-[#0D0D11]/85 to-[#0D0D11]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D11] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C0C0F] via-[#0C0C0F]/85 to-[#0C0C0F]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0F] via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -70,8 +70,8 @@ export function HeroVideo({ videoSrc = '', posterImage = heroBg }: HeroVideoProp
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             {/* Location badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#D4622A]/15 border border-[#D4622A]/30 text-[#D4622A] mb-7">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4622A] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#C8713A]/15 border border-[#C8713A]/30 text-[#C8713A] mb-7">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8713A] animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.18em]">Perth, Western Australia</span>
             </div>
 
@@ -79,11 +79,11 @@ export function HeroVideo({ videoSrc = '', posterImage = heroBg }: HeroVideoProp
             <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-[#EAE6DF] leading-[1.05] mb-6 uppercase tracking-tight">
               Premium Steel Patios,{' '}
               <br />
-              <span className="text-[#D4622A]">Built for WA.</span>
+              <span className="text-[#C8713A]">Built for WA.</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-[#858590] mb-10 max-w-2xl leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-[#858580] mb-10 max-w-2xl leading-relaxed font-light">
               Engineered for durability and designed for the Australian lifestyle.
               We specialise in custom steel-framed patios, carports, and outdoor structures
               that stand the test of time — installed right the first time.
@@ -93,28 +93,28 @@ export function HeroVideo({ videoSrc = '', posterImage = heroBg }: HeroVideoProp
             <div className="flex flex-col sm:flex-row gap-4 mb-14">
               <Link
                 to="/contact"
-                className="inline-flex justify-center items-center px-8 py-4 bg-[#D4622A] text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-[#B85222] transition-colors duration-200 shadow-lg shadow-[#D4622A]/20"
+                className="inline-flex justify-center items-center px-8 py-4 bg-[#C8713A] text-white font-bold text-sm uppercase tracking-widest rounded hover:bg-[#B5632E] transition-colors duration-200 shadow-lg shadow-[#C8713A]/20"
               >
                 Get a Free Quote
               </Link>
               <Link
                 to="/gallery"
-                className="inline-flex justify-center items-center px-8 py-4 bg-transparent border border-[#3A3A42] text-[#EAE6DF] font-bold text-sm uppercase tracking-widest rounded hover:border-[#D4622A]/50 hover:text-[#D4622A] transition-all duration-200"
+                className="inline-flex justify-center items-center px-8 py-4 bg-transparent border border-[#3A3932] text-[#EAE6DF] font-bold text-sm uppercase tracking-widest rounded hover:border-[#C8713A]/50 hover:text-[#C8713A] transition-all duration-200"
               >
                 View Our Work
               </Link>
             </div>
 
             {/* Trust bar */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-8 border-t border-[#1E1E26]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-8 border-t border-[#1E1D1A]">
               {trustStats.map(({ icon: Icon, value, label, fill }) => (
                 <div key={label} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded bg-[#D4622A]/10 border border-[#D4622A]/20 flex items-center justify-center flex-shrink-0">
-                    <Icon size={17} className="text-[#D4622A]" {...(fill ? { fill: '#D4622A' } : {})} />
+                  <div className="w-10 h-10 rounded bg-[#C8713A]/10 border border-[#C8713A]/20 flex items-center justify-center flex-shrink-0">
+                    <Icon size={17} className="text-[#C8713A]" {...(fill ? { fill: '#C8713A' } : {})} />
                   </div>
                   <div>
                     <div className="text-[#EAE6DF] font-heading font-bold text-base leading-tight">{value}</div>
-                    <div className="text-[#5E5E68] text-[11px] uppercase tracking-wider leading-tight">{label}</div>
+                    <div className="text-[#5E5E58] text-[11px] uppercase tracking-wider leading-tight">{label}</div>
                   </div>
                 </div>
               ))}
