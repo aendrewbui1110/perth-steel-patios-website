@@ -1,16 +1,18 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 import { MainLayout } from './layouts/MainLayout';
-import { HomePage } from './pages/HomePage';
-import { ServicesPage } from './pages/ServicesPage';
-import { ServiceDetailPage } from './pages/ServiceDetailPage';
-import { GalleryPage } from './pages/GalleryPage';
-import { AboutPage } from './pages/AboutPage';
-import { ProcessPage } from './pages/ProcessPage';
-import { ContactPage } from './pages/ContactPage';
-import { SuburbPage } from './pages/SuburbPage';
-import { BlogPage } from './pages/BlogPage';
-import { BlogPostPage } from './pages/BlogPostPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ProcessPage = lazy(() => import('./pages/ProcessPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const SuburbPage = lazy(() => import('./pages/SuburbPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export const router = createBrowserRouter([
   {

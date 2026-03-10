@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronRight, X, Star } from 'lucide-react';
 import { projects, projectTypes, type Project } from '../data/projects';
 import SEOHead from '../components/SEOHead';
 
-export function GalleryPage() {
+export default function GalleryPage() {
   const [filter, setFilter] = useState('All');
   const [lightbox, setLightbox] = useState<Project | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   const visible = filter === 'All' ? projects : projects.filter(p => p.type === filter);
 
@@ -18,6 +20,12 @@ export function GalleryPage() {
     if (lightbox) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
+      // Focus the close button when lightbox opens
+      setTimeout(() => closeBtnRef.current?.focus(), 50);
+    } else {
+      // Return focus to the element that opened the lightbox
+      (triggerRef.current as HTMLElement)?.focus();
+      triggerRef.current = null;
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -62,6 +70,7 @@ export function GalleryPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
+                aria-pressed={filter === f}
                 className={`px-5 py-2.5 rounded text-xs font-bold uppercase tracking-widest transition-colors duration-150 ${
                   filter === f
                     ? 'bg-[#D4622A] text-white'
@@ -89,7 +98,10 @@ export function GalleryPage() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
                   className="relative overflow-hidden rounded-lg group break-inside-avoid cursor-pointer"
-                  onClick={() => setLightbox(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerRef.current = e.currentTarget; setLightbox(project); } }}
+                  onClick={(e) => { triggerRef.current = e.currentTarget; setLightbox(project); }}
                 >
                   <img
                     src={project.image}
@@ -175,6 +187,9 @@ export function GalleryPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               transition={{ duration: 0.25 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Project detail view"
               className="bg-[#18181D] border border-[#28282F] rounded-xl max-w-2xl w-full overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
@@ -186,6 +201,7 @@ export function GalleryPage() {
                   referrerPolicy="no-referrer"
                 />
                 <button
+                  ref={closeBtnRef}
                   onClick={() => setLightbox(null)}
                   className="absolute top-3 right-3 w-9 h-9 bg-[#0D0D11]/80 rounded-full flex items-center justify-center text-[#9A9AA4] hover:text-white transition-colors"
                   aria-label="Close"

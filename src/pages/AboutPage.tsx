@@ -57,7 +57,7 @@ const teamMembers = [
   { name: 'Installation Crew', role: 'On-Site Build & Finish' },
 ];
 
-export function AboutPage() {
+export default function AboutPage() {
   return (
     <>
       <SEOHead

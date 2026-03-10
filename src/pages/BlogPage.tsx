@@ -5,7 +5,7 @@ import { ChevronRight, ArrowRight, Clock } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blog-posts';
 import SEOHead from '../components/SEOHead';
 
-export function BlogPage() {
+export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredPosts =

@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
 
-export function NotFoundPage() {
+export default function NotFoundPage() {
   return (
     <section className="pt-32 pb-24 bg-[#0D0D11] min-h-[70vh] flex items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

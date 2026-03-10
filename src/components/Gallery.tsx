@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight } from 'lucide-react';
 import { projects, projectTypes, type Project } from '../data/projects';
@@ -6,6 +6,26 @@ import { projects, projectTypes, type Project } from '../data/projects';
 export function Gallery() {
   const [filter, setFilter]     = useState('All');
   const [lightbox, setLightbox] = useState<Project | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setLightbox(null);
+    }
+    if (lightbox) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => closeBtnRef.current?.focus(), 50);
+    } else {
+      (triggerRef.current as HTMLElement)?.focus();
+      triggerRef.current = null;
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [lightbox]);
 
   const visible = filter === 'All' ? projects : projects.filter(p => p.type === filter);
 
@@ -30,6 +50,7 @@ export function Gallery() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
+                  aria-pressed={filter === f}
                   className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-widest transition-colors duration-150 ${
                     filter === f
                       ? 'bg-[#D4622A] text-white'
@@ -54,7 +75,10 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 16 }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
                   className={`relative overflow-hidden rounded-lg group break-inside-avoid cursor-pointer ${project.aspect}`}
-                  onClick={() => setLightbox(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerRef.current = e.currentTarget; setLightbox(project); } }}
+                  onClick={(e) => { triggerRef.current = e.currentTarget; setLightbox(project); }}
                 >
                   <img
                     src={project.image}
@@ -95,6 +119,9 @@ export function Gallery() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               transition={{ duration: 0.25 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Project detail view"
               className="bg-[#18181D] border border-[#28282F] rounded-xl max-w-lg w-full overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
@@ -106,6 +133,7 @@ export function Gallery() {
                   referrerPolicy="no-referrer"
                 />
                 <button
+                  ref={closeBtnRef}
                   onClick={() => setLightbox(null)}
                   className="absolute top-3 right-3 w-8 h-8 bg-[#0D0D11]/80 rounded-full flex items-center justify-center text-[#9A9AA4] hover:text-white"
                   aria-label="Close"

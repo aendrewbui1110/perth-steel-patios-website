@@ -94,7 +94,7 @@ const faqs = [
   },
 ];
 
-export function ProcessPage() {
+export default function ProcessPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -286,33 +286,41 @@ export function ProcessPage() {
             </div>
 
             <div className="space-y-3">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-[#1A1A20] border border-[#28282F] rounded-lg overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+              {faqs.map((faq, index) => {
+                const isOpen = openFaq === index;
+                const questionId = `faq-question-${index}`;
+                const answerId = `faq-answer-${index}`;
+                return (
+                  <div
+                    key={index}
+                    className="bg-[#1A1A20] border border-[#28282F] rounded-lg overflow-hidden"
                   >
-                    <span className="text-[#EAE6DF] font-semibold text-sm leading-snug">
-                      {faq.question}
-                    </span>
-                    {openFaq === index ? (
-                      <Minus size={18} className="text-[#D4622A] flex-shrink-0" />
-                    ) : (
-                      <Plus size={18} className="text-[#5E5E68] flex-shrink-0" />
+                    <button
+                      id={questionId}
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      aria-controls={answerId}
+                      className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                    >
+                      <span className="text-[#EAE6DF] font-semibold text-sm leading-snug">
+                        {faq.question}
+                      </span>
+                      {isOpen ? (
+                        <Minus size={18} className="text-[#D4622A] flex-shrink-0" />
+                      ) : (
+                        <Plus size={18} className="text-[#5E5E68] flex-shrink-0" />
+                      )}
+                    </button>
+                    {isOpen && (
+                      <div id={answerId} role="region" aria-labelledby={questionId} className="px-6 pb-5">
+                        <p className="text-[#858590] text-sm leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
                     )}
-                  </button>
-                  {openFaq === index && (
-                    <div className="px-6 pb-5">
-                      <p className="text-[#858590] text-sm leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         </div>

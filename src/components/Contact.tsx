@@ -42,7 +42,7 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
       className="bg-[#1A1A20] border border-[#26262E] rounded-xl p-8 md:p-10"
     >
       {submitted ? (
-        <div className="flex flex-col items-center justify-center h-full gap-5 py-16 text-center">
+        <div className="flex flex-col items-center justify-center h-full gap-5 py-16 text-center" aria-live="polite">
           <CheckCircle2 size={56} className="text-[#4A7C59]" />
           <h4 className="font-heading text-2xl font-bold text-[#EAE6DF] uppercase">Quote Request Sent!</h4>
           <p className="text-[#858590] max-w-xs text-sm leading-relaxed">
@@ -54,13 +54,13 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label htmlFor="name" className={labelClass}>Full Name *</label>
-              <input type="text" id="name" name="name" required
+              <input type="text" id="name" name="name" required aria-required="true"
                 value={formData.name} onChange={handleChange}
                 className={inputClass} placeholder="Jane Smith" />
             </div>
             <div>
               <label htmlFor="phone" className={labelClass}>Phone Number *</label>
-              <input type="tel" id="phone" name="phone" required
+              <input type="tel" id="phone" name="phone" required aria-required="true"
                 value={formData.phone} onChange={handleChange}
                 className={inputClass} placeholder="0400 000 000" />
             </div>
@@ -75,7 +75,7 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
             </div>
             <div>
               <label htmlFor="suburb" className={labelClass}>Suburb *</label>
-              <input type="text" id="suburb" name="suburb" required
+              <input type="text" id="suburb" name="suburb" required aria-required="true"
                 value={formData.suburb} onChange={handleChange}
                 className={inputClass} placeholder="e.g. Joondalup" />
             </div>
@@ -83,7 +83,7 @@ export function Contact({ showHeading = true, formOnly = false }: ContactProps) 
 
           <div>
             <label htmlFor="type" className={labelClass}>Type of Structure *</label>
-            <select id="type" name="type" required
+            <select id="type" name="type" required aria-required="true"
               value={formData.type} onChange={handleChange}
               className={inputClass + ' appearance-none'}>
               <option value="" disabled>Select an option...</option>

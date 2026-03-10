@@ -66,7 +66,7 @@ const serviceSpecs: Record<string, { material: string; buildTime: string; warran
   'custom-commercial': { material: 'BlueScope Steel + Colorbond Roofing', buildTime: '4-8 weeks', warranty: '10-Year Structural' },
 };
 
-export function ServiceDetailPage() {
+export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const service = services.find((s) => s.slug === slug);
 

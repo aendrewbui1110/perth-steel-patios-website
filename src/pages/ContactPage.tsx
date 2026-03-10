@@ -23,7 +23,7 @@ const trustSignals = [
   { icon: Award, label: '10-Year', sublabel: 'Warranty' },
 ];
 
-export function ContactPage() {
+export default function ContactPage() {
   return (
     <>
       <SEOHead

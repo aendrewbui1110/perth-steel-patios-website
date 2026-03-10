@@ -10,7 +10,7 @@ import { Testimonials } from '../components/Testimonials';
 import { CtaBanner } from '../components/CtaBanner';
 import { Contact } from '../components/Contact';
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <>
       <HeroSlideshow />

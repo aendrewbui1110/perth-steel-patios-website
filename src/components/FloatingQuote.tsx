@@ -47,6 +47,8 @@ export function FloatingQuote() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
+            role="dialog"
+            aria-label="Quick quote form"
             className="absolute bottom-16 right-0 w-80 max-w-sm bg-[#1C1C22] border border-[#22222A] rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
@@ -131,7 +133,7 @@ export function FloatingQuote() {
         animate={hasPulsed ? {} : { scale: [1, 1.15, 1, 1.1, 1] }}
         transition={{ duration: 1.2, ease: 'easeInOut' }}
         className="relative w-14 h-14 rounded-full bg-[#D4622A] text-white shadow-lg hover:bg-[#B85222] transition-colors duration-200 flex items-center justify-center group"
-        aria-label="Get a Quick Quote"
+        aria-label="Open quick quote form"
       >
         <MessageSquare size={24} />
         {/* Tooltip */}

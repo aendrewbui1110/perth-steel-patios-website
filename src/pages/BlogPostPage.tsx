@@ -4,7 +4,7 @@ import { ChevronRight, ArrowRight, Clock, ArrowLeft } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blog-posts';
 import SEOHead from '../components/SEOHead';
 
-export function BlogPostPage() {
+export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((p) => p.slug === slug);
 

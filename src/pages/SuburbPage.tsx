@@ -20,7 +20,7 @@ const styleToSlug: Record<string, string> = {
   'Freestanding Pergolas': 'freestanding-pergolas',
 };
 
-export function SuburbPage() {
+export default function SuburbPage() {
   const { suburb: suburbSlug } = useParams<{ suburb: string }>();
   const suburb = suburbs.find((s) => s.slug === suburbSlug);
 

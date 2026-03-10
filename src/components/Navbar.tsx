@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Logo } from './Logo';
 import { Menu, X, Phone } from 'lucide-react';
@@ -15,12 +15,26 @@ export function Navbar() {
   const [isScrolled, setIsScrolled]           = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Escape key closes mobile menu
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   /** On homepage, scroll to section. On other pages, navigate to the page route. */
   const getNavHref = useCallback(
@@ -43,6 +57,7 @@ export function Navbar() {
   return (
     <>
       <nav
+        aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
             ? 'bg-[#0D0D11]/95 backdrop-blur-md border-b border-[#28282F] py-3 shadow-xl shadow-black/40'
@@ -111,9 +126,11 @@ export function Navbar() {
 
             {/* Mobile toggle */}
             <button
+              ref={menuToggleRef}
               onClick={() => setMobileMenuOpen(true)}
               className="md:hidden text-[#EAE6DF] p-2"
-              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
               <Menu size={26} />
             </button>

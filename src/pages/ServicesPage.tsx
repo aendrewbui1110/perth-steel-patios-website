@@ -5,7 +5,7 @@ import { services } from '../data/services';
 import { Renovations } from '../components/Renovations';
 import SEOHead from '../components/SEOHead';
 
-export function ServicesPage() {
+export default function ServicesPage() {
   return (
     <>
       <SEOHead

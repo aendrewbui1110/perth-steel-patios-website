@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle2, Loader2 } from 'lucide-react';
@@ -10,6 +10,7 @@ export function ExitIntent() {
   const [formData, setFormData] = useState({ name: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   const handleClose = useCallback(() => {
     setIsVisible(false);
@@ -47,6 +48,17 @@ export function ExitIntent() {
       document.removeEventListener('mouseout', handleMouseOut);
     };
   }, [location.pathname]);
+
+  // Escape key closes modal + focus trap
+  useEffect(() => {
+    if (!isVisible) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    setTimeout(() => closeBtnRef.current?.focus(), 50);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isVisible, handleClose]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -89,10 +101,14 @@ export function ExitIntent() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Exit intent offer"
             className="relative w-full max-w-md mx-4 bg-[#1C1C22] border border-[#22222A] border-t-2 border-t-[#D4622A] rounded-2xl p-8"
           >
             {/* Close button */}
             <button
+              ref={closeBtnRef}
               onClick={handleClose}
               className="absolute top-4 right-4 text-[#5E5E68] hover:text-[#EAE6DF] transition-colors"
               aria-label="Close popup"
