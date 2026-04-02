@@ -66,7 +66,7 @@
 - **URL:** https://wdjjeiihpkfzefgggbqx.supabase.co
 - **Tables:** clients, documents, doc_counters, ledger_private
 - **Storage:** documents bucket (private, signed URLs)
-- **SECURITY:** RLS is wide-open — critical fix needed
+- **SECURITY:** RLS fixed 2026-03-26 — all tables secured
 
 ## Non-Negotiables
 - Nothing client-facing or public without Andrew's approval
